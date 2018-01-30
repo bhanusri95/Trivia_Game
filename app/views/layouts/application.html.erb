@@ -7,8 +7,21 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+  	<header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <nav>
+            <ul class="nav pull-right">
+              <li><%= link_to "Home",    '/users/home' %></li>
+              <li><%= link_to "Login",    '/users/login' %></li>
+              <li><%= link_to "Register", '/signup' %></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
     <%= yield %>
   </body>
 </html>
