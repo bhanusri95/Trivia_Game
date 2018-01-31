@@ -14,8 +14,15 @@
           <nav>
             <ul class="nav pull-right">
               <li><%= link_to "Home",    '/users/home' %></li>
-              <li><%= link_to "Login",    '/users/login' %></li>
-              <li><%= link_to "Register", '/signup' %></li>
+              <% if signed_in? %>
+                <li><%= link_to "LogOut",    '/signin' %></li>
+                <li><%= link_to "Create Trivia", '/signup' %></li>
+                <li><%= link_to "Answer Trivia", '/signup' %></li>
+                <li><%= link_to "High scores", '/signup' %></li>
+              <% else %>
+                <li><%= link_to "Login",    '/signin' %></li>
+                <li><%= link_to "Register", '/signup' %></li>
+              <% end %>
             </ul>
           </nav>
         </div>
