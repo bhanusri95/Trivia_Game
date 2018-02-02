@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :users
 
+  resources :trivia
+
   resources :sessions, only: [:new, :create, :destroy]
 
   get 'users/home'
@@ -17,6 +19,8 @@ Rails.application.routes.draw do
 
   match '/signin',  to: 'sessions#new', via: 'get'
 
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/signout', to: 'sessions#destroy', via: 'get'
+  
+  match '/answer', to: 'trivia#ans_trivia', via: 'get'
 
 end

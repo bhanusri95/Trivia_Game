@@ -23,7 +23,11 @@ module SessionsHelper
                                   User.digest(User.new_remember_token))
         cookies.delete(:remember_token)
         self.current_user = nil
-  end
-
-
+    end
+    def signed_in_user
+        unless signed_in?
+          store_location
+          redirect_to '/signin', notice: "Please sign in."
+        end
+    end
 end

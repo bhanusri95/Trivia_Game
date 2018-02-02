@@ -8,6 +8,9 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
+
+gem 'acts-as-taggable-on', :git => 'https://github.com/mbleigh/acts-as-taggable-on'
+#gem 'acts-as-taggable-on'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'sqlite3','1.3.13'
@@ -21,7 +24,9 @@ gem 'rake', '< 11.0'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-gem 'bcrypt', '3.1.11', platforms: [:ruby, :x64_mingw]
+gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
+#gem 'bcrypt', '3.1.11'
+#gem 'bcrypt', '3.1.11', platforms: [:ruby, :x64_mingw]
 #gem 'bcrypt-ruby', '3.1.5', :require => 'bcrypt'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

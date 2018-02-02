@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_many :trivia, dependent: :destroy
 	before_save { self.email = email.downcase }
     before_create :create_remember_token
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

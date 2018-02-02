@@ -1,0 +1,22 @@
+<h1>Create Trivia Question</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@trivium) do |f| %>
+
+      <%= render '/shared/error_messages', object: f.object %>
+
+      <%= f.label :question, "Question" %>
+      <%= f.text_field :question %>
+
+      <%= f.label :answer, "Answer"%>
+      <%= f.text_field :answer %>
+
+      <%= f.label :category, "Category"%>
+      <%= f.text_field :category %>
+
+      <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

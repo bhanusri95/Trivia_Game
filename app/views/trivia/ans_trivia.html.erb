@@ -1,0 +1,43 @@
+
+<!--<script type="text/javascript">
+        //checkVal = document.getElementById("my_answer").value;
+        //if (ans == checkVal){
+          //$("success").css("display",block);
+          $(document).ready(function() {
+
+          $('success').hide(); //Initially form wil be hidden.
+
+          $('fail').hide();
+
+          $('check').click(function() {
+            $('success').show();//Form shows on button click
+
+              });
+          });
+
+           
+        }
+</script>-->
+<h1>Answer Trivia Question</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%=@trivia.each do |f| %>
+      
+      Question:<%= f.question %>
+
+      Answer:
+      <input type="text" name="answer" id="Answer">
+
+      <!--<button id="check" onclick="check()">Check my answer</button>-->
+      
+      <%= button_to "Check my answer" :remote => true, :action => %>
+
+
+      <!--<div id="success" hidden="true">Success</div>
+      <div id="fail" hidden="true">Fail</div>-->
+
+    <% end %>
+
+  </div>
+</div>
