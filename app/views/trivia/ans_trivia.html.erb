@@ -22,20 +22,23 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <%=@trivia.each do |f| %>
+    <% if flash[:check] %>
+        <div class="notice"><%= flash[:check] %></div>
+    <% end %>
+    <%= @trivia.each do |trivium| %>
       
-      Question:<%= f.question %>
+      <%= form_for(:temp, url:'/trivia/check_ans') do |f| %>
 
-      Answer:
-      <input type="text" name="answer" id="Answer">
+        <%= f.label :question, "Question" %>
+        <%= trivium.question %>
 
-      <!--<button id="check" onclick="check()">Check my answer</button>-->
-      
-      <%= button_to "Check my answer" :remote => true, :action => %>
+        <%= f.label :answer, "Answer"%>
+        <%= f.text_field :answer%>
 
+        <%= f.hidden_field :actual_answer, :value=>trivium.answer%>
 
-      <!--<div id="success" hidden="true">Success</div>
-      <div id="fail" hidden="true">Fail</div>-->
+        <%= f.submit "Check My Answer", class: "btn btn-large btn-primary"%>
+      <% end %>
 
     <% end %>
 
