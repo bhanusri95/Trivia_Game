@@ -11,6 +11,8 @@ class User < ApplicationRecord
     #validates :ConfirmPassword, presence: true
     validates :password, length: { minimum: 8 }
     has_secure_password
+    has_many :scores
+    has_many :tags, through: :scores
     def User.new_remember_token
         SecureRandom.urlsafe_base64
     end

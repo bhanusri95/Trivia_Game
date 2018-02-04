@@ -1,0 +1,24 @@
+<h1>My Score Card</h1>
+
+<div class="row">
+
+  <div class="span6 offset3">
+
+    <%if !@score.nil? %>
+
+        <%= @score.each do |score| %>
+
+            Category:
+            <%= score.tag.name %>
+
+            Score:
+            <%= score.points%>
+
+        <% end %>
+
+    <% else %>
+        Sorry!! You have not answered any questions!!
+    <% end %>
+
+  </div>
+</div>

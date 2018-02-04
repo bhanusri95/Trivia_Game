@@ -10,7 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202035042) do
+ActiveRecord::Schema.define(version: 20180203152403) do
+
+  create_table "scores", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tag_id"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_scores_on_tag_id"
+    t.index ["user_id"], name: "index_scores_on_user_id"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "trivium_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["trivium_id"], name: "index_taggings_on_trivium_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "trivia", force: :cascade do |t|
     t.string "question"
