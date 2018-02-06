@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 
-gem 'acts-as-taggable-on', :git => 'https://github.com/mbleigh/acts-as-taggable-on'
+#gem 'acts-as-taggable-on', :git => 'https://github.com/mbleigh/acts-as-taggable-on'
 #gem 'acts-as-taggable-on'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
@@ -20,6 +20,7 @@ end
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'rake', '< 11.0'
+gem 'activerecord-reputation-system', require: 'reputation_system'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

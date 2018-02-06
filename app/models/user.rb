@@ -11,8 +11,15 @@ class User < ApplicationRecord
     #validates :ConfirmPassword, presence: true
     validates :password, length: { minimum: 8 }
     has_secure_password
-    has_many :scores
+    has_many :scores, dependent: :destroy
     has_many :tags, through: :scores
+    has_many :evaluations, class_name: "RSEvaluation", as: :source
+    has_reputation :votes, source: {reputation: :votes, of: :trivia}, aggregated_by: :sum
+    
+    def voted_for?(trivium)
+        evaluations.where(target_type: trivium.class , target_id: trivium.id).exists?
+    end
+
     def User.new_remember_token
         SecureRandom.urlsafe_base64
     end

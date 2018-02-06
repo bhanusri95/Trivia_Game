@@ -1,0 +1,36 @@
+<h1>High Scores</h1>
+
+<div class="row">
+
+  <div class="span6 offset3">
+    <table>
+        <thead>
+            <th>
+                User
+            </th>
+            <th>
+                Score
+            </th>
+        </thead>
+        <%= @order.each do |o|%>
+            
+            <tr>
+                <td>
+                    <%= o.user.FirstName %>
+                </td>
+                <td>
+                    <%= o.total %>
+                </td>
+            </tr>
+
+
+        <% end %>
+
+
+    </table>
+
+    
+
+  </div>
+
+</div>

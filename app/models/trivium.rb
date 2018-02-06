@@ -7,6 +7,7 @@ class Trivium < ApplicationRecord
 	belongs_to :user
 	has_many :taggings
   has_many :tags, through: :taggings
+  has_reputation :votes, source: :user, aggregated_by: :sum
 	default_scope -> { order('created_at DESC') }
 
 	def self.tagged_with(name)
@@ -27,5 +28,4 @@ class Trivium < ApplicationRecord
         Tag.where(name: n.strip).first_or_create!
       end
     end
-
 end

@@ -16,7 +16,8 @@ class TriviaController < ApplicationController
 	end
     
     def ans_trivia
-    	@trivia=Trivium.where.not(user_id: current_user.id)
+    	@trivia=Trivium.find_with_reputation(:votes, :all, order: "votes desc").where.not(user_id: current_user.id)
+        #@torder=@trivia.find_with_reputation(:votes, :all, order: "votes desc")
         #@trivia=Trivium.all
     end
 
@@ -56,13 +57,23 @@ class TriviaController < ApplicationController
     	
     end
 
-    def Highs
+    def vote
+        value = params[:type] == "up" ? 1 : -1
+        @trivium = Trivium.find(params[:id])
+        @trivium.add_or_update_evaluation(:votes, value, current_user)
+        flash[:notice]="Thank you for voting"
+        redirect_to '/answer'
+        #redirect_to :back, notice: "Thank you for voting"
 
+    end
+
+    def Highs
+        @order=Score.group(:user_id).select('user_id, SUM(points) as total').order('total desc').limit(10)
     end
 
     def show
     	@score=Score.where(user: current_user.id)
-
+    	@total_score=@score.sum(:points)
     end
 
     private
@@ -70,5 +81,7 @@ class TriviaController < ApplicationController
     def trivia_params
       params.require(:trivium).permit(:question, :answer, :tag_list)
     end
+
+
 
 end

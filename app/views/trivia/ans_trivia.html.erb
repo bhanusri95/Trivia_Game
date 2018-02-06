@@ -1,29 +1,14 @@
 
-<!--<script type="text/javascript">
-        //checkVal = document.getElementById("my_answer").value;
-        //if (ans == checkVal){
-          //$("success").css("display",block);
-          $(document).ready(function() {
-
-          $('success').hide(); //Initially form wil be hidden.
-
-          $('fail').hide();
-
-          $('check').click(function() {
-            $('success').show();//Form shows on button click
-
-              });
-          });
-
-           
-        }
-</script>-->
 <h1>Answer Trivia Question</h1>
 
 <div class="row">
   <div class="span6 offset3">
     <% if flash[:check] %>
         <div class="notice"><%= flash[:check] %></div>
+    <% end %>
+
+    <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
     <% end %>
     <%= @trivia.each do |trivium| %>
       
@@ -37,10 +22,17 @@
 
         <%= f.hidden_field :actual_answer, :value=>trivium.answer%>
 
-        <%= f.hidden_field :id, :value=>trivium.id%>
+        <%= f.hidden_field :id, :value=>trivium.id %>
+
+        <%= pluralize trivium.reputation_for(:votes).to_i, "vote" %>
 
         <%= f.submit "Check My Answer", class: "btn btn-large btn-primary"%>
-      <% end %>
+
+        <%= link_to "up", vote_trivium_path(trivium, type: "up"), method: "post" %>
+
+        <%= link_to "down", vote_trivium_path(trivium, type: "down"), method: "post" %>
+
+       <% end %>
 
     <% end %>
 
