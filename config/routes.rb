@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   match '/', to: 'users#home', via: 'get'
 
-  get 'users/home'
+  match '/ans_trivia', to: 'trivia#ans_trivia', via: 'get'
+
+  #get 'users/home'
 
   get 'users/login'
 
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
 
   match '/signout', to: 'sessions#destroy', via: 'get'
   
-  match '/answer', to: 'trivia#ans_trivia', via: 'get'
+  match '/answer', to: 'trivia#by_category', via: 'get'
 
   match '/highscore', to: 'trivia#Highs', via: 'get'
 

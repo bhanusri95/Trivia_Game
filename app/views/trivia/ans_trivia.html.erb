@@ -1,14 +1,14 @@
 
-<h1>Answer Trivia Question</h1>
+<h1 style="margin-top: 50px" class="jumbotron text-center">Answer Trivia Questions</h1>
 
 <div class="row">
   <div class="span6 offset3">
     <% if flash[:check] %>
-        <div class="notice"><%= flash[:check] %></div>
+        <div class="alert alert-danger"><%= flash[:check] %></div>
     <% end %>
 
     <% if flash[:notice] %>
-        <div class="notice"><%= flash[:notice] %></div>
+        <div class="alert alert-info"><%= flash[:notice] %></div>
     <% end %>
     <%= @trivia.each do |trivium| %>
       

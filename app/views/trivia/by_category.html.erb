@@ -1,0 +1,7 @@
+<h1 style="margin-top: 50px" class="jumbotron text-center"> By catehory </h1>
+
+<%= @tags.each do |tag| %>
+
+    <%= link_to tag.name , {controller: 'trivia', action: 'ans_trivia', id:tag.id}%>
+
+<% end %>

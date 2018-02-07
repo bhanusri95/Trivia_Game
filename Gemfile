@@ -14,9 +14,11 @@ gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'sqlite3','1.3.13'
-  gem 'rspec-rails', '2.13.1'
+  gem 'rspec-rails', '3.6.0'
 end
 
+#gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'bootstrap-sass', '~> 2.3.1.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'rake', '< 11.0'
@@ -26,6 +28,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
+gem 'test-unit'
 #gem 'bcrypt', '3.1.11'
 #gem 'bcrypt', '3.1.11', platforms: [:ruby, :x64_mingw]
 #gem 'bcrypt-ruby', '3.1.5', :require => 'bcrypt'
@@ -52,6 +55,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'factory_girl_rails', '4.2.0'
 end
 
 group :development do

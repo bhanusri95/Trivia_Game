@@ -1,4 +1,4 @@
-<h1>My Score Card</h1>
+<h1 style="margin-top: 50px" class="jumbotron text-center">My Score Card</h1>
 
 <div class="row">
 
@@ -6,17 +6,33 @@
 
     <%if !@score.nil? %>
 
-        <%= @score.each do |score| %>
+        Your Total Score is: <%= @total_score %>
 
-            Category:
-            <%= score.tag.name %>
+        <table class="table table-striped">
+        <thead>
+            <th>
+                Category
+            </th>
+            <th>
+                Score
+            </th>
+        </thead>
+        <%= @score.each do |score|%>
+            
+            <tr>
+                <td>
+                    <%= score.tag.name %>
+                </td>
+                <td>
+                    <%= score.points%>
+                </td>
+            </tr>
 
-            Score:
-            <%= score.points%>
 
         <% end %>
 
-        Your Total Score is: <%= @total_score %>
+
+    </table>
 
     <% else %>
         Sorry!! You have not answered any questions!!

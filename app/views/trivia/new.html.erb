@@ -1,4 +1,4 @@
-<h1>Create Trivia Question</h1>
+<h1 style="margin-top: 50px" class="jumbotron text-center">Create Your own Trivia Question</h1>
 
 <div class="row">
   <div class="span6 offset3">
@@ -6,8 +6,10 @@
 
       <%= render '/shared/error_messages', object: f.object %>
 
-      <%= f.label :question, "Question" %>
-      <%= f.text_field :question %>
+      <div class="form-group">
+        <%= f.label :question, "Question" %>
+        <%= f.text_field :question, class: "form-control"%>
+      </div>
 
       <%= f.label :answer, "Answer"%>
       <%= f.text_field :answer %>

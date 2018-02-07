@@ -14,9 +14,14 @@ class TriviaController < ApplicationController
         end
 
 	end
+
+    def by_category
+        @tags=Tag.all
+    end
     
     def ans_trivia
-    	@trivia=Trivium.find_with_reputation(:votes, :all, order: "votes desc").where.not(user_id: current_user.id)
+        @trivia=Tag.find_by_id(params[:id]).trivia
+    	#@trivia=Trivium.find_with_reputation(:votes, :all, order: "votes desc").where.not(user_id: current_user.id)
         #@torder=@trivia.find_with_reputation(:votes, :all, order: "votes desc")
         #@trivia=Trivium.all
     end
