@@ -1,7 +1,14 @@
-<h1 style="margin-top: 50px" class="jumbotron text-center"> By catehory </h1>
+<h1 style="margin-top: 50px" class="jumbotron text-center"> By category </h1>
 
-<%= @tags.each do |tag| %>
+<ul class="list-group">
+	<li>
+	   <%= link_to "All" , {controller: 'trivia', action: 'ans_trivia', id:"all"}%>
+	</li>
+	<%= @tags.each do |tag| %>
 
-    <%= link_to tag.name , {controller: 'trivia', action: 'ans_trivia', id:tag.id}%>
+      <li class="list-group-item">
+      	<%= link_to tag.name , {controller: 'trivia', action: 'ans_trivia', id:tag.id}%>
+      </li>
 
-<% end %>
+    <% end %>
+</ul>

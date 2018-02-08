@@ -20,7 +20,12 @@ class TriviaController < ApplicationController
     end
     
     def ans_trivia
-        @trivia=Tag.find_by_id(params[:id]).trivia
+        if params[:id]=="all"
+            @trivia=Trivium.find_with_reputation(:votes, :all, order: "votes desc").where.not(user_id: current_user.id)
+        else
+            @trivia=Tag.find_by_id(params[:id]).trivia.where.not(user_id: current_user.id).find_with_reputation(:votes, :all, order: "votes desc")
+        end
+        @tag_id=params[:id]
     	#@trivia=Trivium.find_with_reputation(:votes, :all, order: "votes desc").where.not(user_id: current_user.id)
         #@torder=@trivia.find_with_reputation(:votes, :all, order: "votes desc")
         #@trivia=Trivium.all
@@ -43,6 +48,7 @@ class TriviaController < ApplicationController
                 scoretemp.points+=4
                 scoretemp.save
     		end
+            #@check="Congratulations!! Your answer is correct. You earned 4 points :)"
     		flash[:check]="Congratulations!! Your answer is correct. You earned 4 points :)"
     	else
     		tags.each do |tag|
@@ -52,13 +58,17 @@ class TriviaController < ApplicationController
     		end
     		flash[:check]="Oops!! Your answer is wrong. The correct answer is "+actual_answer+". You loose 1 point :("
     	end
+        respond_to do |format|
+            format.html { 
+                redirect_to :action=> "ans_trivia", :id=>params[:temp][:tag_id] 
+            }
+        end
     	#triv=Tagging.where(trivium: id)
     	#tags_ids=[]
     	#triv.each do |t|
     	#	tags_ids.push(t.tag.id)
     	#end
-
-    	redirect_to '/answer'
+        #redirect_to :action=> "ans_trivia", :id=>params[:temp][:tag_id]
     	
     end
 
@@ -67,7 +77,7 @@ class TriviaController < ApplicationController
         @trivium = Trivium.find(params[:id])
         @trivium.add_or_update_evaluation(:votes, value, current_user)
         flash[:notice]="Thank you for voting"
-        redirect_to '/answer'
+        redirect_to :action=> "ans_trivia", :id=>params[:tag_id]
         #redirect_to :back, notice: "Thank you for voting"
 
     end

@@ -3,6 +3,9 @@
 
 <div class="row">
   <div class="span6 offset3">
+ <!--   <div class="alert alert-danger" id="check">
+        
+    </div>-->
     <% if flash[:check] %>
         <div class="alert alert-danger"><%= flash[:check] %></div>
     <% end %>
@@ -10,30 +13,39 @@
     <% if flash[:notice] %>
         <div class="alert alert-info"><%= flash[:notice] %></div>
     <% end %>
-    <%= @trivia.each do |trivium| %>
+
+    <% if @trivia.any? %>
+
+      <%= @trivia.each do |trivium| %>
       
-      <%= form_for(:temp, url:'/trivia/check_ans') do |f| %>
+        <%= form_for(:temp, url:'/trivia/check_ans',remote: true) do |f| %>
 
-        <%= f.label :question, "Question" %>
-        <%= trivium.question %>
+          <%= f.label :question, "Question" %>
+          <%= trivium.question %>
 
-        <%= f.label :answer, "Answer"%>
-        <%= f.text_field :answer%>
+          <%= f.label :answer, "Answer"%>
+          <%= f.text_field :answer%>
 
-        <%= f.hidden_field :actual_answer, :value=>trivium.answer%>
+          <%= f.hidden_field :actual_answer, :value=>trivium.answer%>
 
-        <%= f.hidden_field :id, :value=>trivium.id %>
+          <%= f.hidden_field :id, :value=>trivium.id %>
 
-        <%= pluralize trivium.reputation_for(:votes).to_i, "vote" %>
+          <%= f.hidden_field :tag_id, :value=>@tag_id %>
 
-        <%= f.submit "Check My Answer", class: "btn btn-large btn-primary"%>
+          <%= pluralize trivium.reputation_for(:votes).to_i, "vote" %>
 
-        <%= link_to "up", vote_trivium_path(trivium, type: "up"), method: "post" %>
+          <%= f.submit "Check My Answer", class: "btn btn-large btn-primary"%>
 
-        <%= link_to "down", vote_trivium_path(trivium, type: "down"), method: "post" %>
+          <%= link_to "up", vote_trivium_path(trivium, type: "up", tag_id: @tag_id), method: "post" %>
 
-       <% end %>
+          <%= link_to "down", vote_trivium_path(trivium, type: "down", tag_id: @tag_id), method: "post" %>
 
+         <% end %>
+
+      <% end %>
+
+    <% else %>
+        <div class="alert alert-danger"> Sorry!! You do not have any questions in this category to be answered</div>
     <% end %>
 
   </div>
