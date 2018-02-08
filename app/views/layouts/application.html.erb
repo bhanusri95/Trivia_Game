@@ -13,14 +13,16 @@
         <div class="container">
           <nav>
             <ul class="nav pull-right">
-              <li><%= link_to "Home",    '/' %></li>
               <% if signed_in? %>
+                <li><%= link_to current_user.email,    '/' %></li>
+                <li><%= link_to "Home",    '/' %></li>
                 <li><%= link_to "LogOut",    '/signout' %></li>
                 <li><%= link_to "Create Trivia", '/trivia/new' %></li>
                 <li><%= link_to "Answer Trivia", '/answer' %></li>
                 <li><%= link_to "High scores", '/highscore' %></li>
                 <li><%= link_to "My score card", '/trivia/show' %></li>
               <% else %>
+                <li><%= link_to "Home",    '/' %></li>
                 <li><%= link_to "Login",    '/signin' %></li>
                 <li><%= link_to "Register", '/signup' %></li>
               <% end %>

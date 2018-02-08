@@ -6,4 +6,12 @@ FactoryGirl.define do
     password "Bhanu1995*"
     password_confirmation "Bhanu1995*"
   end
+
+  factory :trivium do
+    question "What is your name"
+    answer "Bhanu"
+    tag_list "GK"
+    user
+  end
+
 end

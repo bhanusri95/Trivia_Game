@@ -1,13 +1,10 @@
 require 'spec_helper'
 
 describe Trivium do
-    #let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:user) }
   
-    # This code is not idiomatically correct.
     before do
-    	@user = User.new(FirstName: "Bhanu sri", LastName:"Karumanchi",email: "bhanusrikarumanchi@gmail.com", password: "Bhanu1995*", password_confirmation: "Bhanu1995*")
-    	@trivium=Trivium.new(question: "what is your name", answer: "Bhanu",tag_list: "GK",user_id: @user.id)
-    	#@trivium = @user.trivium.build(question: "what is your name", answer: "Bhanu",tag_list: "GK") 
+    	@trivium = Trivium.new(question: "what is your name", answer: "Bhanu",tag_list: "GK",user_id: user.id)
     end
     #@trivium = Trivium.new(question: "what is your name", answer: "Bhanu",tag_list: "GK",user_id: user.id)
   

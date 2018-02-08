@@ -2,9 +2,6 @@ class UsersController < ApplicationController
   def home
   end
 
-  def login
-  end
-
   def index
   	#@user=User.new
   end
@@ -17,7 +14,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       # Handle a successful save.
-      redirect_to :action => "home"
+      #redirect_to :action => "home"
+      redirect_to :controller=> "sessions", :action => "new"
     else
       render 'new'
     end

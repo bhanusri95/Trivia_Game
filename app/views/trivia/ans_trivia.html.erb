@@ -7,7 +7,11 @@
         
     </div>-->
     <% if flash[:check] %>
-        <div class="alert alert-danger"><%= flash[:check] %></div>
+        <% if flash[:pos] == true%>
+            <div class="alert alert-success" id="mycheck"><%= flash[:check] %></div>
+        <% else %>
+            <div class="alert alert-danger" id="mycheck"><%= flash[:check] %></div>
+        <% end %>
     <% end %>
 
     <% if flash[:notice] %>
@@ -36,9 +40,9 @@
 
           <%= f.submit "Check My Answer", class: "btn btn-large btn-primary"%>
 
-          <%= link_to "up", vote_trivium_path(trivium, type: "up", tag_id: @tag_id), method: "post" %>
+          <%= link_to "up", vote_trivium_path(trivium, type: "up", tag_id: @tag_id), remote: true, method: "post" %>
 
-          <%= link_to "down", vote_trivium_path(trivium, type: "down", tag_id: @tag_id), method: "post" %>
+          <%= link_to "down", vote_trivium_path(trivium, type: "down", tag_id: @tag_id), remote:true, method: "post" %>
 
          <% end %>
 

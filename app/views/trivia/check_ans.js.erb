@@ -1,3 +1,5 @@
 alert('Hello');
-//$('#check').append("Hello");
-$('.row').append("hello");
+<% if flash[:pos]==true %>
+    $('#mycheck').class("alert alert-success");
+<% else %>
+    $('#mycheck').class("alert alert-danger");

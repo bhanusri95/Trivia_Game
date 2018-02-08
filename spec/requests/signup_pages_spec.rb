@@ -6,7 +6,7 @@ RSpec.describe "SignupPages", type: :request do
 
     describe "signup" do
 
-    before { visit new_user_path }
+    before { visit '/signup' }
 
     it { should have_content('FirstName') }
     

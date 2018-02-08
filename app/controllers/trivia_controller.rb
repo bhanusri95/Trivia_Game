@@ -50,6 +50,7 @@ class TriviaController < ApplicationController
     		end
             #@check="Congratulations!! Your answer is correct. You earned 4 points :)"
     		flash[:check]="Congratulations!! Your answer is correct. You earned 4 points :)"
+            flash[:pos]=true
     	else
     		tags.each do |tag|
     		    scoretemp=Score.find_by(user_id: current_user.id, tag_id: tag.id)
@@ -57,6 +58,7 @@ class TriviaController < ApplicationController
                 scoretemp.save
     		end
     		flash[:check]="Oops!! Your answer is wrong. The correct answer is "+actual_answer+". You loose 1 point :("
+            flash[:pos]=false
     	end
         respond_to do |format|
             format.html { 
@@ -77,7 +79,9 @@ class TriviaController < ApplicationController
         @trivium = Trivium.find(params[:id])
         @trivium.add_or_update_evaluation(:votes, value, current_user)
         flash[:notice]="Thank you for voting"
-        redirect_to :action=> "ans_trivia", :id=>params[:tag_id]
+        respond_to do |format|
+            format.html{redirect_to :action=> "ans_trivia", :id=>params[:tag_id]}
+        end 
         #redirect_to :back, notice: "Thank you for voting"
 
     end
