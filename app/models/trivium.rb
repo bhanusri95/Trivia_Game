@@ -8,7 +8,7 @@ class Trivium < ApplicationRecord
 	has_many :taggings
   has_many :tags, through: :taggings
   has_reputation :votes, source: :user, aggregated_by: :sum
-	default_scope -> { order('created_at DESC') }
+	#default_scope -> { order('votes DESC') }
 
 	def self.tagged_with(name)
       Tag.find_by_name!(name).trivia

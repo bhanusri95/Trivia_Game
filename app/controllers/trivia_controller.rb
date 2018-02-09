@@ -21,9 +21,10 @@ class TriviaController < ApplicationController
     
     def ans_trivia
         if params[:id]=="all"
-            @trivia=Trivium.find_with_reputation(:votes, :all, order: "votes desc").where.not(user_id: current_user.id)
+            @trivia=Trivium.where.not(user_id: current_user.id).order('votes desc').find_with_reputation(:votes, :all)
+            #@trivia=Trivium.where.not(user_id: current_user.id).find_with_reputation(:votes, :all, {order: "votes desc"})
         else
-            @trivia=Tag.find_by_id(params[:id]).trivia.where.not(user_id: current_user.id).find_with_reputation(:votes, :all, order: "votes desc")
+            @trivia=Tag.find_by_id(params[:id]).trivia.where.not(user_id: current_user.id).order('votes desc').find_with_reputation(:votes, :all)
         end
         @tag_id=params[:id]
     	#@trivia=Trivium.find_with_reputation(:votes, :all, order: "votes desc").where.not(user_id: current_user.id)
